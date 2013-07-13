@@ -1,3 +1,4 @@
+var dynamic = true;
 var express = require('express');
 var fs = require('fs');
 
@@ -7,8 +8,11 @@ var buffer = fs.readFileSync('index.html');
 var out = buffer.toString();
 
 app.get('/', function(request, response) {
-  //response.send('Hello World 2!');
-  response.send(out);
+  if (dynamic) {
+    response.send(out);
+  } else {
+    response.send('Hello World 2!');
+  }
 });
 
 var port = process.env.PORT || 5000;
